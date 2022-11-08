@@ -7,7 +7,7 @@
     "icon": "./assets/portseido_logo_with_frame.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/portseido_logo_with_frame.png",
+      "image": "./assets/portseido_splash_screen.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,7 +23,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/portseido_logo_with_frame.png",
+        "foregroundImage": "./assets/portseido_splash_screen.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.portseido.app"

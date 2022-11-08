@@ -1,18 +1,30 @@
-import { Button, Text, View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { useEffect, useRef } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { useAuth0, Auth0Provider } from "react-native-auth0";
+import { useAuth0 } from "react-native-auth0";
 import UnauthenticatedNavigator from "./UnauthenticatedNavigator";
 import AuthenticatedNavigator from "./AuthenticatedNavigator";
+import LoadingScreen from "../screens/Loading";
+
 
 function Root() {
-  const { authorize, clearSession, user } = useAuth0();
+  const { user } = useAuth0();
 
-  const loggedIn = user !== undefined && user !== null;
+  // CHECK THAT AUTH0 IS LOADING CREDENTIAL OR NOT
+  const timesRun = useRef(0);
+  if (timesRun.current < 2) {
+    timesRun.current += 1;
+  }
+  const isLoading = (timesRun.current < 2)
 
+  if (isLoading) {
+    return <LoadingScreen />
+  }
+  
   return (
     <NavigationContainer>
-      {loggedIn && <AuthenticatedNavigator />}
-      {!loggedIn && <UnauthenticatedNavigator />}
+      {user && <AuthenticatedNavigator />}
+      {!user && <UnauthenticatedNavigator />}
     </NavigationContainer>
   );
 }
